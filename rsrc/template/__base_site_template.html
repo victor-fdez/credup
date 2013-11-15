@@ -1,0 +1,50 @@
+{% load bootstrap3 %}
+
+
+<head>
+	{# Load CSS and JavaScript #}
+	{% block stylesheets %}
+		{% bootstrap_css %}
+	{% endblock %}
+	{% block scripts %}
+		{% bootstrap_javascript %}
+	{% endblock %}
+	<title>
+		{% block title %}
+			Contact Credup
+		{% endblock %}
+	</title>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
+		<a class="navbar-brand" href=".">CREDUP</a>
+		{% block topbar%}
+			{% include "__m_small_h_user_authentication.html" %}
+		{% endblock %} 
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 header">
+				{% block header %}
+					<div class="jumbotron">
+						<h1>CREDUP!</h1>
+						<p>keep all your contacts credentials updated</p>
+					</div>
+				{% endblock %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 sidebar">
+				{% block sidebar %}
+					no sidebar content
+				{% endblock %}
+			</div>
+			<div class="col-md-8 content">
+				{% block content %}
+					no content
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</body>
+
