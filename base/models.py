@@ -18,7 +18,7 @@ class UserSignUpVerifier(models.Model):
 		    super(UserSignUpVerifier, self).__init__(*args, **kwargs)
 	
 	def get_absolute_url(self):
-		return "/registration/signup-verify/%s/" % self.code
+		return "/accounts/signup-verify/%s/" % self.code
 
 def UserSignUpVerifierInit(**kwargs):
 	"""
@@ -36,7 +36,6 @@ def UserSignUpVerifierInit(**kwargs):
 				unique_found = True
 		instance.email = user.email
 		instance.code = rand_key
-		print 'Verifier key', rand_key, 'email is', user.email
 
 post_init.connect(UserSignUpVerifierInit, UserSignUpVerifier)
 

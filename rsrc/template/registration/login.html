@@ -1,24 +1,27 @@
 {% extends "__small_center_content.html" %}
+{% load css_extras %}
 {% block base-main-content %}
 	<h2>Log in</h2>
-	<div class="row">
-		<div class="col-md-4 col-md-offset-1">
-			{% if form.errors %}
-				<p>Your username and password didn't match. Please try again.</p>
-			{% endif %}
-			<form role="form" method="post" >
-				{% csrf_token %}
+		{% if form.errors %}
+			<div class="row">
+			<div class="col-md-offset-4 col-md-6">
+				<p class="text-warning">Your username and password didn't match. Please try again.</p>
+			</div>
+			</div>
+		{% endif %}
+		<form role="form" class="form-horizontal" action="." method="post" >
+			{% csrf_token %}
+			{% for field in form %}
 				<div class="form-group">
-					{{ form.username.label_tag }}
-					{{ form.username }}
+					<label class="col-md-4 control-label">{{ field.label }}:</label>
+					<div class="col-md-6">
+						{{ field|addcssclass:"form-control" }}
+					</div>
 				</div>
-				<div class="form-group">
-					{{ form.password.label_tag }}
-					{{ form.password }}
-				</div>
-				<input type="submit" value="login" class="btn btn-default"/>
-				<input type="hidden" name="next" value="/home/" />
-			</form>
-		</div>
-	</div>
+			{% endfor %}
+			<div class="col-md-offset-4 col-md-2">
+				<button type="submit" class="btn btn-default">Log in</button>
+			</div>
+			<input type="hidden" name="next" value="/home/" />
+		</form>
 {% endblock %}

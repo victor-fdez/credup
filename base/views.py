@@ -46,6 +46,7 @@ def reset_view(request):
 	return redirect('/')
 
 @csrf_protect
+@transaction.atomic
 def register_view(request):
 	if request.method == "GET":
 		f = AdvUserCreationForm()
@@ -55,17 +56,19 @@ def register_view(request):
 		f = AdvUserCreationForm(request.POST)
 		if f.is_valid():
 			data = f.cleaned_data
-			user = User(first_name=data['first_name'],
-					last_name=data['last_name'],
-					email=data['email'],
-					username=data['username'],
-					password=data['password1'],
-					is_active=False)
+			print 'password=', data['password1']
+			user = User.objects.create_user(data['username'],
+							data['email'],
+							data['password1'])
+			user.first_name = data['first_name']
+			user.last_name = data['last_name']
+			user.is_active = False
 			verifier = UserSignUpVerifier(user=user)	
 			user.save()
 			verifier.save()
 			send_mail('email verification',
 				'please follow these link so that your email may be verified\n'
+				'\n'
 				'\thttp://www.credup.com%s' % verifier.get_absolute_url(),
 				'victor.j.fdez@gmail.com',
 				[user.email])
