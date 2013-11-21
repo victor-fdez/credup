@@ -84,7 +84,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Template Directories
+STATICFILES_DIRS = (
+	'rsrc/',
+)
 
 TEMPLATE_DIRS = (
 	'rsrc/template/',
 )
+
+# Email backend to be used for sending emails
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/app-messages'

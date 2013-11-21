@@ -1,24 +1,33 @@
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div class="collapse navbar-collapse" >
 	{% if user.is_authenticated %} 
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="user/{{ user.username }}">{{ user.username }}</a></li>
+			<li><a href="{{ profile_url }}">{{ user.username }}</a></li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">options <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="user/{{ user.username }}">profile</a></li>
+				<a data-toggle="dropdown" href="#">options <b class="caret"></b></a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					<li><a href="{{ profile_url }}">profile</a></li>
 					<li class="divider"></li>
-					<li><a href="account/logout">Log out</a></li>
+					<li><a href="{{ logout_url }}">Log out</a></li>
 				</ul>
 			</li>
 		</ul>
 	{% else %}
 		{% if not logging %}
-			<form class="navbar-form navbar-right" role="sign in" action="accounts/reset/">
-				<button type="submit" class="btn btn-link">reset</button>
-			</form>
-			<form class="navbar-form navbar-right" role="reset user password" action="accounts/login/">
-				<button type="submit" class="btn btn-default">Sign in</button>
-			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<form class="navbar-form" role="log in" action="{{ login_url }}">
+						<button type="submit" class="btn btn-default">Log in</button>
+					</form>
+				</li>
+				<li class="dropdown">
+					<a data-toggle="dropdown" href="#">other <b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li><a href="{{ register_url }}">register</a></li>
+						<li><a href="{{ reset_url }}">forgot password</a></li>
+						<!-- <li class="divider"></li> -->
+					</ul>
+				</li>
+			</ul>
 		{% else %}
 		{% endif %}
 	{% endif %}

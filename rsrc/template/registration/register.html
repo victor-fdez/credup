@@ -1,0 +1,31 @@
+{% extends "__small_center_content.html" %}
+{% load css_extras %}
+{% block base-main-content %}
+	<h2>Register</h2>
+	<form class="form-horizontal" action="." method="post">
+		{% csrf_token %}
+		{% for field in form %}
+			<div class="form-group {% if field.errors %}has-warning{% endif %}">
+				<label class="col-md-4 control-label">{{ field.label }}:</label>
+				{{ field.type }}
+				<div class="col-xs-5">
+					{{ field|addcssclass:"form-control" }}
+				</div>
+			</div>
+			<div class="row col-md-offset-4 ">
+				<ul>
+					{% for error in field.errors %}
+						<li>
+						<p class="text-warning">
+							{{ error }}
+						</p>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endfor %}
+		<div class="col-md-offset-4 col-md-2">
+			<button type="submit" class="btn btn-default">Register</button>
+		</div>
+	</form>
+{% endblock %}

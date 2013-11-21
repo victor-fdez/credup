@@ -1,4 +1,5 @@
 {% load bootstrap3 %}
+{% load staticfiles %}
 
 
 <head>
@@ -7,6 +8,7 @@
 		{% bootstrap_css %}
 	{% endblock %}
 	{% block scripts %}
+		<script src="{% static "js/jquery-1.10.2.js" %}"></script>
 		{% bootstrap_javascript %}
 	{% endblock %}
 	<title>
@@ -17,34 +19,25 @@
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation">
-		<a class="navbar-brand" href=".">CREDUP</a>
-		{% block topbar%}
+		<a class="navbar-brand" href="/">CREDUP</a>
+		{% block base-topbar %}
 			{% include "__m_small_h_user_authentication.html" %}
 		{% endblock %} 
 	</nav>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12 header">
-				{% block header %}
-					<div class="jumbotron">
-						<h1>CREDUP!</h1>
-						<p>keep all your contacts credentials updated</p>
-					</div>
-				{% endblock %}
+		{% block base-showcase %}
+			<div class="row">
+				<div class="col-md-12 header">
+						<div class="jumbotron">
+							<h1>CREDUP!</h1>
+							<p>keep all your contacts credentials updated</p>
+						</div>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 sidebar">
-				{% block sidebar %}
-					no sidebar content
-				{% endblock %}
-			</div>
-			<div class="col-md-8 content">
-				{% block content %}
-					no content
-				{% endblock %}
-			</div>
-		</div>
+		{% endblock %}
+		{% block base-main %}
+			{% include "__sidebar_content.html" %}
+		{% endblock %}
 	</div>
 </body>
 
