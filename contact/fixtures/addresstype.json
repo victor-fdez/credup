@@ -1,0 +1,23 @@
+[
+	{
+		"model": "contact.AddressType",
+		"pk": 1,
+		"fields": {
+			"value": "Home"
+		}
+	},
+	{
+		"model": "contact.AddressType",
+		"pk": 2,
+		"fields": {
+			"value": "Work"
+		}
+	},
+	{
+		"model": "contact.AddressType",
+		"pk": 3,
+		"fields": {
+			"value": "Other"
+		}
+	}
+]

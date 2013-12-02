@@ -1,0 +1,55 @@
+{% load css_extras %}
+{% load debug_tags %}
+{% load widget_tweaks %}
+<div class="row" style="margin-top: 40px; margin-bottom: 15px">
+	<div class="col-md-offset-1 col-md-4" >
+		<h3 style="margin: 0;">
+			{{ title_formset }}
+		</h3>
+	</div>
+	<div class="col-md-offset-4 col-md-1">
+		<button type="button" class="btn btn-default" style="float: right;">
+			<span class="glyphicon glyphicon-plus" style="margin-bottom: 3;"></span>
+		</button>
+	</div>
+
+</div>
+{{ formset.management_form }}
+{% for form in formset.forms %}
+	<div class="single-form" style="margin-top: 15px">
+		{% for field in form %}
+			{% if field.field.widget|klass == "CheckboxInput" %}
+			{% else %}
+				<div class="row form-group {% if field.errors %}has-warning{% endif %}">
+					<label class="col-md-4 control-label">{{ field.label }}:</label>
+					<div class="col-md-6">
+						{{ field|addcssclass:"form-control" }}
+					</div>
+				</div>
+						{% endif %}
+			{% if field.errors %}
+				<div class="row">
+					<div class="col-md-offset-4 ">
+						<ul>
+							{% for error in field.errors %}
+								<li>
+								<p class="text-warning">
+									{{ error }}
+								</p>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+	<div class="row">
+		<div class="col-md-offset-9 col-md-1">
+			<button type="button" class="btn btn-danger" style="float: right;">
+				<span class="glyphicon glyphicon-remove" style="margin-bottom: 3;"></span>
+			</button>
+		</div>
+	</div>
+{% endfor %}
+

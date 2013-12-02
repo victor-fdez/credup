@@ -1,0 +1,23 @@
+[
+	{
+		"model": "contact.NameType",
+		"pk": 1,
+		"fields": {
+			"value": "First Name"
+		}
+	},
+	{
+		"model": "contact.NameType",
+		"pk": 2,
+		"fields": {
+			"value": "Middle Name"
+		}
+	},
+	{
+		"model": "contact.NameType",
+		"pk": 3,
+		"fields": {
+			"value": "Last Name"
+		}
+	}
+]

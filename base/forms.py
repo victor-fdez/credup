@@ -11,6 +11,9 @@ class AdvUserCreationForm(UserCreationForm):
 	priviledges, which will be granted after another administrator has
 	allowed it
 	"""
+	title = 'Register'
+	title_submit = 'Sign up'
+
 	class Meta(UserCreationForm.Meta):
 		fields = ('first_name', 'last_name', 'email',)
 			

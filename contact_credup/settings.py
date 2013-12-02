@@ -38,6 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bootstrap3',
     'base',
+    'contact',
+    'template_debug',
+    'widget_tweaks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -95,3 +98,4 @@ TEMPLATE_DIRS = (
 # Email backend to be used for sending emails
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'tmp/app-messages'
+TEMPLATE_DEBUG = True
