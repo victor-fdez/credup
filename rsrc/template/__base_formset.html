@@ -15,6 +15,21 @@
 
 </div>
 {{ formset.management_form }}
+{% if formset.non_form_errors %}
+	{% for error in formset.non_form_errors %}
+		<div class="row">
+			<div class="col-md-offset-4 ">
+				<ul>
+					<li>
+						<p class="text-warning">
+							{{ error }}
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
 {% for form in formset.forms %}
 	<div class="single-form" style="margin-top: 15px">
 		{% for field in form %}

@@ -5,7 +5,7 @@
 </h2>
 <form class="form-horizontal" action="." method="post">
 	{% csrf_token %}
-	{% for formsetName, formset in formsets.items %}
+	{% for formset in formsets %}
 		{% include "__base_formset.html" with title_formset=formset.formsetTitle formset=formset %}
 	{% endfor %}
 	<div class="row">

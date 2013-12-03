@@ -5,9 +5,14 @@ from contact.forms import AddressForm, ContactForm
 
 def contact_add(request):
 	if request.method == 'GET':
-		return render(request, 'contact/contact.html', dictionary={'ContactForm': ContactForm()})
+		contactForm = ContactForm()
+		return render(request, 'contact/contact.html', dictionary={'ContactForm': contactForm})
 	else:
-		return render(request, 'contact/contact.html', dictionary={'ContactForm': ContactForm()})
+		contactForm = ContactForm(request=request)
+		if contactForm.is_valid():
+			#create new contact and redirect to contact form contact/11334533/
+			print 'success form was valid'
+		return render(request, 'contact/contact.html', dictionary={'ContactForm': contactForm})
 			
 
 def contact_edit(request):

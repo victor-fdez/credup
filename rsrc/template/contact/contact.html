@@ -1,4 +1,12 @@
 {% extends "__large_center_content.html" %}
+{% block scripts %}
+	{{ block.super }}
+	<script>
+		$(document).ready(function(){
+			
+		});
+	</script>
+{% endblock %}
 {% block base-main-content %}
 	{% include "__base_formsets.html" with formsets=ContactForm.formsets title_form="Contact" title_submit="Save" %}
 {% endblock %}
